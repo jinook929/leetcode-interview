@@ -1,5 +1,5 @@
 const myAtoi = (s) => {
-    let sNoSpace = s.trimStart().split(" ")
+    let sNoSpace = s.trim().split(" ")
     console.log(sNoSpace)
     if(!parseInt(sNoSpace[0])) return 0
     let num = sNoSpace.find(ch => typeof (parseInt(ch)) === "number")
