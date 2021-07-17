@@ -1,7 +1,7 @@
 const exist = (board, word) => {
     for(let i = 0; i < board.length; i++) {
         for(let j = 0; j < board[0].length; j++) {
-            if(board[i][j] === word[0] && search(i, j, 0, board, word)) {
+            if(board[i][j] === word[0] && backtrack(i, j, 0, board, word)) {
                 return true
             }
         }
@@ -9,36 +9,42 @@ const exist = (board, word) => {
     return false
 }
 
-function search(i, j, idx, board, word) {
+function backtrack(i, j, idx, board, word) {
     // base case
     if(idx === word.length - 1) return true
 
     // mark starting location
-    let tmp = board[i][j]
     board[i][j] = "@"
 
     // check up
-    if(i > 0 && board[i-1][j] === word[idx+1] && search(i-1, j, idx+1, board, word)) {
+    if(i > 0 && board[i-1][j] === word[idx+1] && backtrack(i-1, j, idx+1, board, word)) {
+        board[i][j] = word[idx]
         return true
     }
 
     // check right
-    if(j < board[0].length - 1 && board[i][j+1] === word[idx+1] && search(i, j+1, idx+1, board, word)) {
+    if(j < board[0].length - 1 && board[i][j+1] === word[idx+1] && backtrack(i, j+1, idx+1, board, word)) {
+        board[i][j] = word[idx]
         return true
     }
 
     // check down
-    if(i < board.length - 1 && board[i+1][j] === word[idx+1] && search(i+1, j, idx+1, board, word)) {
+    if(i < board.length - 1 && board[i+1][j] === word[idx+1] && backtrack(i+1, j, idx+1, board, word)) {
+        board[i][j] = word[idx]
         return true
     }
 
     // check left
-    if(j > 0 && board[i][j-1] === word[idx+1] && search(i, j-1, idx+1, board, word)) {
+    if(j > 0 && board[i][j-1] === word[idx+1] && backtrack(i, j-1, idx+1, board, word)) {
+        board[i][j] = word[idx]
         return true
     }
 
     // restore starting location value
-    board[i][j] = tmp
+    board[i][j] = word[idx]
+    // board[i][j] = tmp
+    // console.log(board)
+
     return false
 }
 
@@ -109,6 +115,7 @@ let board = [
     ["A","D","E","E"]
 ]
 console.log(exist(board, "ABCCED"))
+console.log(board)
 
 board = [
     ["A","B","C","E"],
@@ -116,6 +123,7 @@ board = [
     ["A","D","E","E"]
 ]
 console.log(exist(board, "SEE"))
+console.log(board)
 
 board = [
     ["A","B","C","E"],
@@ -123,3 +131,4 @@ board = [
     ["A","D","E","E"]
 ]
 console.log(exist(board, "ABCB"))
+console.log(board)
