@@ -24,8 +24,8 @@ const candyCrush = s => {
 
 console.log(candyCrush("aaabbbc"))
 console.log(candyCrush("ccaabbbaacd"))
-console.log(candyCrush("aabbccddeeedcba"))
 console.log(candyCrush("aaabbbacd"))
+console.log(candyCrush("aabbccddeeedcba"))
 
 // const candyCrush = s => {
 //     let result = ""
@@ -48,3 +48,27 @@ console.log(candyCrush("aaabbbacd"))
     
 //     return todo ? candyCrush(result) : result
 // }
+
+const candyCrush1D = s => {
+    let output = ""
+    let checkAgain = false
+    let strArr = s.split("").map(ch => ch.charCodeAt(0))
+    // check same char series
+    for(let i = 0; i < strArr.length - 2; i++) {
+        let tmpValue = Math.abs(strArr[i])
+        if(tmpValue === Math.abs(strArr[i + 1]) && tmpValue === Math.abs(strArr[i + 2])) {
+            strArr[i] = strArr[i + 1] = strArr[i + 2] = -tmpValue
+            checkAgain = true
+        }
+    }
+    // update output
+    for(let el of strArr) {
+        if(el > 0) output += String.fromCharCode(el)
+    }
+    // return or recursion?
+    return checkAgain ? candyCrush1D(output) : output
+}
+console.log(candyCrush("aaabbbc"))
+console.log(candyCrush("ccaabbbaacd"))
+console.log(candyCrush1D("aaabbbacd"))
+console.log(candyCrush1D("aabbccddeeedcba"))

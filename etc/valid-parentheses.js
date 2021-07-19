@@ -9,8 +9,8 @@ var isValid = function(s) {
         if(el === "(" || el === "{" || el === "[") {
             stack.push(el)
         } else {
-            let last = stack.pop()
-            if(pairs[last] !== el) return false
+            let current = stack.pop()
+            if(pairs[current] !== el) return false
         }
     }
     return stack.length === 0 ? true : false
