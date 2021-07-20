@@ -11,51 +11,80 @@ const firstRepeatedChar = s => {
         if(set.has(ch)) return s.indexOf(ch)
         set.add(ch)
     }
+    return null
 }
 
-console.log("answer:", firstRepeatedChar("aaaa"))
-console.log("answer:", firstRepeatedChar("abca"))
-console.log("answer:", firstRepeatedChar("abcb"))
-// "aaaa"
-// "abca"
-// "abcb"
+console.log("first repeated index:", firstRepeatedChar("aaaa"))
+console.log("first repeated index:", firstRepeatedChar("abca"))
+console.log("first repeated index:", firstRepeatedChar("abcb"))
 
 const firstNonRepeatedChar = s => {
-    const map = new Map()
-    for(const ch of s) {
-        if(map.get(ch)) {
-            map.set(ch, map.get(ch) + 1)
+    // const map = new Map()
+    // for(const ch of s) {
+    //     if(map.get(ch)) {
+    //         map.set(ch, map.get(ch) + 1)
+    //     } else {
+    //         map.set(ch, 1)
+    //     }
+    // }
+    // for(let [k, v] of map) {
+    //     if(v === 1) return k
+    // }
+    // return null
+    
+    const uniqueSet = new Set()
+    let repeatedSet = new Set()
+    for(let ch of s) {
+        if(!uniqueSet.has(ch)) {
+            uniqueSet.add(ch)
         } else {
-            map.set(ch, 1)
+            repeatedSet.add(ch)
         }
     }
-    for(let [k, v] of map) {
-        if(v === 1) return k
+    for(let ch of repeatedSet) {
+        uniqueSet.delete(ch)
     }
-    return ""
+    return uniqueSet.values().next().value
 }
 
-console.log("answer:", firstNonRepeatedChar("aaaa"))
-console.log("answer:", firstNonRepeatedChar("abca"))
-console.log("answer:", firstNonRepeatedChar("abcb"))
+console.log("first non-repeated char:", firstNonRepeatedChar("aaaa"))
+console.log("first non-repeated char:", firstNonRepeatedChar("abca"))
+console.log("first non-repeated char:", firstNonRepeatedChar("abcb"))
 
 // [0, 1, 1, 2, 3, 5, 8, 13, 21...]
 
 // const fib = n => {
 //     const fibArr = [0, 1]
-//     for(let i = 2; i < n; i++) {
+//     for(let i = 2; i <= n; i++) {
 //         fibArr.push(fibArr[i - 1] + fibArr[i - 2])
 //     }
-//     return fibArr[n - 1]
+//     return fibArr[n]
 // }
 
-const fib = n => {
-    if(n < 3) return n - 1
-    return fib(n-1) + fib(n-2)
+function memoize(fn) {
+    const cache = {}
+    return function(...args) {
+        if(cache[args]) return cache[args]
+        const result = fn.apply(this, args)
+        cache[args] = result
+        return result
+    }
 }
 
+function fib(n) {
+    if(n < 2) return n
+    // return fib(n-1) + fib(n-2)
+    return memoizedFib(n-1) + memoizedFib(n-2)
+}
+
+const memoizedFib = memoize(fib)
+
+console.log(fib(0))
 console.log(fib(1))
 console.log(fib(2))
 console.log(fib(3))
+console.log(fib(4))
+console.log(fib(5))
 console.log(fib(10))
-// console.log(fib(45))
+console.log(memoizedFib(100))
+console.log(memoizedFib(1000))
