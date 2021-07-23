@@ -1,20 +1,20 @@
-const collatz = (n, counter = 0) => {
-    if(n === 1) return counter
-    return collatz(n % 2 === 0 ? n / 2 : n * 3 + 1, counter + 1)
-}
-
-// const cache = new Map()
 // const collatz = (n, counter = 0) => {
 //     if(n === 1) return counter
-
-//     if(cache.has(`${n}-${counter}`)) {
-//         return cache.get(`${n}-${counter}`)
-//     }
-
-//     let result = collatz(n % 2 === 0 ? n / 2 : n * 3 + 1, counter + 1)
-//     cache.set(`${n}-${counter}`, result)
-//     return result
+//     return collatz(n % 2 === 0 ? n / 2 : n * 3 + 1, counter + 1)
 // }
+
+const cache = new Map()
+const collatz = (n, counter = 0) => {
+    if(n === 1) return counter
+
+    if(cache.has(`${n}-${counter}`)) {
+        return cache.get(`${n}-${counter}`)
+    }
+
+    let result = collatz(n % 2 === 0 ? n / 2 : n * 3 + 1, counter + 1)
+    cache.set(`${n}-${counter}`, result)
+    return result
+}
 
 for(let i = 0; i < 333333; i++) {
     collatz(63728127)

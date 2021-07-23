@@ -97,27 +97,30 @@ class MemoizedCollatz {
     }
 }
 
-const m = new MemoizedCollatz()
-console.log(m.numSteps(4))
-console.log(m.cache)
-console.log(m.numSteps(3))
-console.log(m.cache)
-for(let i = 0; i < 333333; i++) {
-    m.numSteps(63728127)
-}
-console.log(m.numSteps(63728127))
+// const m = new MemoizedCollatz()
+// console.log(m.numSteps(4))
+// console.log(m.cache)
+// console.log(m.numSteps(3))
+// console.log(m.cache)
+// for(let i = 0; i < 333333; i++) {
+//     m.numSteps(63728127)
+// }
+// console.log(m.numSteps(63728127))
 
 class Collatz {
     numSteps(n, counter = 0) {
         if(n === 1) return counter
-        return this.numSteps(n % 2 === 0 ? n / 2 : n * 3 + 1, counter + 1)
+        let result = this.numSteps(n % 2 === 0 ? n / 2 : n * 3 + 1, counter + 1)
+        console.log(`recursion result of numSteps(${n % 2 === 0 ? n / 2 : n * 3 + 1}) @ counter_${counter + 1}`, result)
+        return result
+        // return this.numSteps(n % 2 === 0 ? n / 2 : n * 3 + 1, counter + 1)
     }
 }
 
 const c = new Collatz()
-for(let i = 0; i < 333333; i++) {
-    c.numSteps(63728127)
-}
-console.log(c.numSteps(63728127))
+// for(let i = 0; i < 333333; i++) {
+//     c.numSteps(63728127)
+// }
+// console.log(c.numSteps(63728127))
 console.log(c.numSteps(4))
 console.log(c.numSteps(3))
