@@ -1,8 +1,14 @@
 const twoSum = (nums, target) => {
+  // prepare a map
   const numsMap = new Map
+
+  // loop thru array
   for(let i = 0; i < nums.length; i++) {
+    // check complement to target of i-th el
     const complement = target - nums[i]
+    // return indices if map has the complement
     if(numsMap.has(complement)) return [numsMap.get(complement), i]
+    // add new case to map with index
     numsMap.set(nums[i], i)
   }
 }

@@ -1,5 +1,6 @@
 function superDigit(n, k) {
     let num = parseInt(n)
+    // base case
     if(num < 10) return num
     let tmp = n.split("").reduce((acc, el) => acc + parseInt(el), 0) * k
     let sum = tmp.toString()
@@ -14,3 +15,5 @@ n = "740495400969422744624637574722785221369257089071788417400158753714583872339
 n = "123"
 console.log(superDigit(n, k))
 console.log(superDigit(n, 3))
+console.log(superDigit(2, 3))
+console.log(superDigit(2, 7))

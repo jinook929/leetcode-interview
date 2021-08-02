@@ -4,14 +4,22 @@ function ListNode(val, next) {
 }
  
  const reverseList = head => {
-    let trav = head
-    let newHead = null
-    while(trav) {
-        let newNode = new ListNode(trav.val, newHead)
-        newHead = newNode
-        trav = trav.next
+    let prev = null
+    while(head !== null) {
+        let next_node = head.next
+        head.next = prev
+        prev = head
+        head = next_node
     }
-    return newHead
+    return prev
+    // let trav = head
+    // let newHead = null
+    // while(trav) {
+    //     let newNode = new ListNode(trav.val, newHead)
+    //     newHead = newNode
+    //     trav = trav.next
+    // }
+    // return newHead
 };
 
 let node1 = {val: 2, next: {val: 0, next: {val: 1, next: {val: 3, next: null}}}}

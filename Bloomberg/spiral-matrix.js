@@ -31,7 +31,7 @@ const spiralOrder = matrix => {
         }
         left++
     }
-    console.log(matrix)
+    
     return output
 }
 

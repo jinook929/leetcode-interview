@@ -12,6 +12,7 @@ function numberOfIslands(grid) {
 }
 
 function dfs(grid, i, j) {
+    // base case to stop advancing
     if(j >= grid[0].length || i >= grid.length || j < 0 || i < 0 || grid[i][j] === "0") return
 
     grid[i][j] = "0"
