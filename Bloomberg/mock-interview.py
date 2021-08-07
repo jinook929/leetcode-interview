@@ -45,5 +45,5 @@ steps = c.numSteps
 print(c.cache)
 print(steps(8))
 print(c.cache)
-# print(steps(5))
-# print(steps(16))
+print(steps(5))
+print(steps(16))
