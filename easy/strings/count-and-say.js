@@ -1,15 +1,15 @@
 const countAndSay = n => {const s = n
-    let final = "1"
     console.log("Round #", 1, "temporary final string:", "1")
+    // when n is 1
+    let final = "1"
     if(n === 1) {
         return final
     }
-
-    let newCharIndex = 0
-    let charCounter = 0
-    let tmpStr = ""
-
+    // looping n - 1 time 
     while(n > 1) {
+        let newCharIndex = 0
+        let charCounter = 0
+        let tmpStr = ""
         console.log("Round #", s + 2 - n)
         while(charCounter < final.length) {
             while(final.charAt(charCounter) === final.charAt(newCharIndex)) {
@@ -20,10 +20,7 @@ const countAndSay = n => {const s = n
             newCharIndex = charCounter
         }
         final = tmpStr
-        tmpStr = ""
         n--
-        newCharIndex = 0
-        charCounter = 0
     }
 
     return final
