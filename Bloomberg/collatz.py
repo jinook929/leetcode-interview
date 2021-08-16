@@ -19,16 +19,16 @@ class Collatz:
   #   return counter
 
   ### memoization version
-  # def numSteps(self, n):
-  #   if n in self.cache:
-  #     return self.cache[n]
-  #   key = n
-  #   counter = 0
-  #   while n != 1:
-  #     n = n / 2 if n % 2 == 0 else n * 3 + 1
-  #     counter += 1
-  #   self.cache[key] = counter
-  #   return counter
+  def numSteps(self, n):
+    if n in self.cache:
+      return self.cache[n]
+    key = n
+    counter = 0
+    while n != 1:
+      n = n / 2 if n % 2 == 0 else n * 3 + 1
+      counter += 1
+    self.cache[key] = counter
+    return counter
     
   ### recursion version
   # def numSteps(self, n, counter = 0):
