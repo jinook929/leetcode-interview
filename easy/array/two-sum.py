@@ -8,9 +8,9 @@ def twoSum(nums, target):
     values = {}
     for i, el in enumerate(nums):
         diff = target - el
-        print(f"diff = {diff}")
+        # print(f"diff = {diff}")
         if diff in values:
-            print(f"i = {i} / values[diff] = {values[diff]}")
+            # print(f"i = {i} / values[diff] = {values[diff]}")
             return [values[diff], i]
         values[el] = i
         

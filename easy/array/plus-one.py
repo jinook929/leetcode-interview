@@ -2,7 +2,8 @@ def plusOne(digits):
     # convertedDigits = [str(int) for int in digits]
     # return list(str(int("".join(convertedDigits)) + 1))
 
-    for i in range(len(digits) - 1, -1, -1):
+    for i in reversed(range(len(digits))):
+    # for i in range(len(digits) - 1, -1, -1):
       if digits[i] < 9:
         digits[i] += 1
         return digits

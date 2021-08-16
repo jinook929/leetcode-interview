@@ -1,21 +1,25 @@
+import math
+
 def isValidUnit(unit):
   numList = sorted(filter(lambda x: x != ".", unit))
-  for i in range(0, len(numList) - 1):
+  for i in range(len(numList) - 1):
     if numList[i] == numList[i+1]:
       return False
   return True
 
 def isValidSudoku(board):
-  columns = [(". "*9).strip().split(" ")[:] for i in range(9)]
-  boxes = [(". "*9).strip().split(" ")[:] for i in range(9)]
-  import math
-  for i in range(0,9):
-    for j in range(0,9):
+  columns = [["."] * 9 for _ in range(9)]
+  boxes = [["."] * 9 for _ in range(9)]
+  
+  for i in range(9):
+    for j in range(9):
       columns[i][j] = board[j][i]
       boxes[i][j] = board[math.floor(j/3)+math.floor(i/3)*3][j%3+i%3*3]
-  for i in range (0,9):
+
+  for i in range (9):
     if not (isValidUnit(board[i]) and isValidUnit(columns[i]) and isValidUnit(boxes[i])):
       return False
+
   return True
 
 board1 = [
